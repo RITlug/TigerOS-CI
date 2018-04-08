@@ -18,3 +18,11 @@
 ## GitHub:	CoffeeFrame
 ## Date:	2018-04-08
 ## Description:	Script for automating the building of TigerOS images when changes are made to the code repository
+
+## What this script needs to do:
+##	- be called from python Github webhook listener
+##
+##	- if a package: check if the resulting file already exists, if it does delete it
+##	- copr-rpmbuild the packages git repository
+##	- copy resulting package from /var/lib/copr-rpmbuild/results/ into user directory
+##	- delete results directory
