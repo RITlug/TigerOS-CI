@@ -13,4 +13,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+## File:	TigerOS-CI.sh
+## Developer:	Maxwell Leisner
+## GitHub:	CoffeeFrame
+## Date:	2018-04-08
+## Description:	Script for automating the building of TigerOS images when changes are made to the code repository
