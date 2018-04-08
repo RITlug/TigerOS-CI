@@ -26,3 +26,8 @@
 ##	- copr-rpmbuild the packages git repository
 ##	- copy resulting package from /var/lib/copr-rpmbuild/results/ into user directory
 ##	- delete results directory
+
+[ -e /home/$USER/to-sign/tigeros-$PACKAGE-*.*rpm] rm /home/$USER/to-sign/$PACKAGE-*.*rpm
+copr-rpmbuild-scm --clone-url https://github.com/RITlug/$PACKAGE --chroot fedora-$FEDORAVER-x86_x64
+sudo cp /var/lib/copr-rpmbuild/results/$PACKAGE*.rpm /home/$USER/to-sign
+sudo rm -rf /var/lib/copr-rpmbuild/results
