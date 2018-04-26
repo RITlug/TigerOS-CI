@@ -19,6 +19,7 @@
 ## Developer:	Maxwell Leisner
 ## GitHub:	CoffeeFrame
 ## Date:	2018-04-08
+## Updated:	2018-04-25
 ## Description:	Script for automating the building of TigerOS images when changes are made to the code repository
 
 ## What this script needs to do:
@@ -28,6 +29,9 @@
 ##	- copr-rpmbuild the packages git repository
 ##	- copy resulting package from /var/lib/copr-rpmbuild/results/ into user directory
 ##	- delete results directory
+
+## Do not use tigeros- package prefix, script adds it automatically
+## Usage: TigerOS-CI.sh [Package]
 
 PACKAGE=$1
 FEDORAVER=27
