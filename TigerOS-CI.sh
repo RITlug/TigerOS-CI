@@ -20,26 +20,31 @@
 ## GitHub:	CoffeeFrame
 ## Date:	2018-04-08
 ## Updated:	2018-04-25
-## Description:	Script for automating the building of TigerOS images when changes are made to the code repository
+## Description:	Script for automating the building of TigerOS images when 
+##              changes are made to the code repository
 
 ## What this script needs to do:
 ##	- be called from python Github webhook listener
 ##
-##	- if a package: check if the resulting file already exists, if it does delete it
+##	- if a package: check if the resulting file already exists, if it does 
+##    delete it
 ##	- copr-rpmbuild the packages git repository
-##	- copy resulting package from /var/lib/copr-rpmbuild/results/ into user directory
+##	- copy resulting package from /var/lib/copr-rpmbuild/results/ into user 
+##    directory
 ##	- delete results directory
 
 ## Do not use tigeros- package prefix, script adds it automatically
 ## Usage: TigerOS-CI.sh [Package]
 
 PACKAGE=$1
-FEDORAVER=27
-if [ -e "/home/$USER/to-sign/tigeros-$PACKAGE-*.*rpm" ] 
-then rm "/home/$USER/to-sign/tigeros-$PACKAGE-*.*rpm"
+FEDORAVER=28
+if [ -e "/home/$USER/to-sign/tigeros-$PACKAGE-*.*rpm" ] ; then
+    rm "/home/$USER/to-sign/tigeros-$PACKAGE-*.*rpm"
 fi
 
 sudo rm -rf /var/lib/copr-rpmbuild/results
-sudo copr-rpmbuild scm --clone-url https://github.com/RITlug/tigeros-$PACKAGE --chroot fedora-$FEDORAVER-x86_64
-mkdir --parents ~/to-sign
-sudo cp /var/lib/copr-rpmbuild/results/tigeros-$PACKAGE*.rpm ~/to-sign
+sudo copr-rpmbuild scm --clone-url https://github.com/RITlug/tigeros-$PACKAGE \
+    --chroot fedora-$FEDORAVER-x86_64
+mkdir -p --parents /home/$USER/to-sign
+sudo cp /var/lib/copr-rpmbuild/results/tigeros-$PACKAGE*.rpm \
+    /home/$USER/to-sign
